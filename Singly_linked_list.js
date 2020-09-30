@@ -27,7 +27,7 @@ class SiglyLinkedList {
 
   pop() {
     if (!this.head) {
-      console.log("Singly linked list is already Empty");
+      return console.log("Singly linked list is already Empty");
     }
     const current = this.head;
     const newTail = current;
@@ -63,6 +63,17 @@ class SiglyLinkedList {
     //   }
     //   pre = pre.next;
     // }
+  }
+
+  shift() {
+    if (!this.head) return console.log("List is already Empty");
+    const currentHead = this.head;
+    this.head = currentHead.next;
+    this.length--;
+    if (this.length === 0) {
+      this.tail = null;
+    }
+    return currentHead;
   }
 }
 
