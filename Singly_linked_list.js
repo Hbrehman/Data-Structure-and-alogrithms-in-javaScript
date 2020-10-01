@@ -110,6 +110,19 @@ class SiglyLinkedList {
   }
 
   insert(index, val) {
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) return this.unshift(val);
+    if (index === this.length) return this.push(val);
+
+    const pre = this.get(index - 1);
+    const next = pre.next;
+    let newNode = new Node(val);
+    pre.next = newNode;
+    newNode.next = next;
+    this.length++;
+    return true;
+
+    /*
     let count = 0;
     let current = this.head;
     let post = current.next;
@@ -118,11 +131,22 @@ class SiglyLinkedList {
       post = post.next;
       count++;
     }
-    let newNode = new Node(val);
     current.next = newNode;
     newNode.next = post;
     this.length++;
-    return this;
+    return true;
+    */
+  }
+
+  remove(index) {
+    if (index < 0 || index >= this.length) return undefined;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+    let previousNode = this.get(index - 1);
+    const removed = previousNode.next;
+    previousNode.next = removed.next;
+    this.length--;
+    return removed;
   }
 }
 
