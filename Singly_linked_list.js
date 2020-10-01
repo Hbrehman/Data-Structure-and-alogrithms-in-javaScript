@@ -88,6 +88,17 @@ class SiglyLinkedList {
     this.length++;
     return this;
   }
+
+  get(index) {
+    if (index < 0 || index >= this.length) return console.log("No such value");
+    let counter = 0;
+    let current = this.head;
+    while (counter < index) {
+      current = current.next;
+      counter++;
+    }
+    return current;
+  }
 }
 
 const sll = new SiglyLinkedList();
