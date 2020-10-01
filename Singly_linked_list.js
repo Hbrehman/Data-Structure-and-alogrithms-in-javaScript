@@ -90,7 +90,7 @@ class SiglyLinkedList {
   }
 
   get(index) {
-    if (index < 0 || index >= this.length) return console.log("No such value");
+    if (index < 0 || index >= this.length) return null;
     let counter = 0;
     let current = this.head;
     while (counter < index) {
@@ -99,12 +99,38 @@ class SiglyLinkedList {
     }
     return current;
   }
+
+  set(index, val) {
+    let foundNode = this.get(index);
+    if (foundNode) {
+      node.val = val;
+      return true;
+    }
+    return false;
+  }
+
+  insert(index, val) {
+    let count = 0;
+    let current = this.head;
+    let post = current.next;
+    while (count < index - 1) {
+      current = post;
+      post = post.next;
+      count++;
+    }
+    let newNode = new Node(val);
+    current.next = newNode;
+    newNode.next = post;
+    this.length++;
+    return this;
+  }
 }
 
 const sll = new SiglyLinkedList();
+sll.push(1);
+sll.push(2);
 sll.push(3);
 sll.push(4);
-sll.push(5);
 
 /*
 class Node {
