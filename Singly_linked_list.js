@@ -29,8 +29,8 @@ class SiglyLinkedList {
     if (!this.head) {
       return console.log("Singly linked list is already Empty");
     }
-    const current = this.head;
-    const newTail = current;
+    let current = this.head;
+    let newTail = current;
     while (current.next) {
       newTail = current;
       current = current.next;
@@ -75,9 +75,72 @@ class SiglyLinkedList {
     }
     return currentHead;
   }
+
+  unshift(val) {
+    const newNode = new Node(val);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
 }
 
 const sll = new SiglyLinkedList();
 sll.push(3);
-console.log(sll.pop());
-console.log(sll);
+sll.push(4);
+sll.push(5);
+
+/*
+class Node {
+  constructor(val) {
+    this.val = val;
+    this.next = null;
+  }
+}
+
+
+
+class SinglyLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+  push(val) {
+    const newNode = new Node(val);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+    this.length++;
+    return this;
+  }
+  pop() {
+    if (!this.head) return console.log("List is already Empty");
+    let current = this.head;
+    let newTail = current;
+    while (current.next) {
+      newTail = current;
+      current = current.next;
+    }
+    this.tail = newTail;
+    newTail.next = null;
+    this.length--;
+    if (this.length === 0) {
+      this.head = 0;
+      this.tail = 0;
+    }
+    return current;
+  }
+}
+const sll = new SinglyLinkedList();
+console.log(sll.push(1));
+*/
