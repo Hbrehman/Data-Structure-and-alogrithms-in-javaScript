@@ -69,3 +69,4 @@ class DLL {
 }
 
 const dll = new DLL();
+dll.push(2)
