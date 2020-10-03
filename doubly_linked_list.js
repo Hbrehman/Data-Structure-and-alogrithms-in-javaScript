@@ -66,7 +66,43 @@ class DLL {
     this.length++;
     return this;
   }
+
+  get(index) {
+    if (index < 0 || index >= this.length) return null;
+    const middle = Math.floor(this.length / 2);
+    if (index <= middle) {
+      let current = this.head;
+      let counter = 0;
+      while (counter < index) {
+        current = current.next;
+        counter++;
+      }
+      return current;
+    }
+
+    let current = this.tail;
+    let counter = this.length - 1;
+    while (counter > index) {
+      current = current.prev;
+      counter--;
+    }
+    return current;
+  }
+
+  set(index, val) {
+    const foundNode = this.get(index);
+    if (foundNode !== null) {
+      foundNode.val = val;
+      return true;
+    }
+    return false;
+  }
 }
 
 const dll = new DLL();
-dll.push(2)
+dll.push(1);
+dll.push(2);
+dll.push(3);
+dll.push(4);
+dll.push(5);
+dll.push(6);
