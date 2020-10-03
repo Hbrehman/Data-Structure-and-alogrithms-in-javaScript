@@ -97,6 +97,35 @@ class DLL {
     }
     return false;
   }
+
+  insert(index, val) {
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) return !!this.unshift(val);
+    if (index === this.length) return !!this.push(val);
+    const prevNode = this.get(index - 1);
+    const nextNode = prevNode.next;
+    const newNode = new Node(val);
+    prevNode.next = newNode;
+    nextNode.prev = newNode;
+    newNode.next = nextNode;
+    newNode.prev = prevNode;
+    return true;
+  }
+
+  remove(index) {
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+    let removed = this.get(index);
+    let prevNode = removed.prev;
+    let nextNode = removed.next;
+    prevNode.next = nextNode;
+    nextNode.prev = prevNode;
+    removed.next = null;
+    removed.prev = null;
+    this.length--;
+    return removed;
+  }
 }
 
 const dll = new DLL();
