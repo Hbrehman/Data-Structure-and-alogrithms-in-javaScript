@@ -70,6 +70,20 @@ class BST {
     }
     return data;
   }
+
+  preOrderDFS() {
+    let data = [],
+      current;
+    current = this.root;
+    function traversal(current) {
+      data.push(current.val);
+      if (current.left) this.traversal(current.left);
+
+      if (current.right) this.traversal(current.right);
+    }
+    traversal(current);
+    return data;
+  }
 }
 
 const bst = new BST();
