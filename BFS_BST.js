@@ -77,9 +77,35 @@ class BST {
     current = this.root;
     function traversal(current) {
       data.push(current.val);
-      if (current.left) this.traversal(current.left);
+      if (current.left) traversal(current.left);
 
-      if (current.right) this.traversal(current.right);
+      if (current.right) traversal(current.right);
+    }
+    traversal(current);
+    return data;
+  }
+
+  postOrderDFS() {
+    let data = [],
+      current;
+    current = this.root;
+    function traversal(current) {
+      if (current.left) traversal(current.left);
+      if (current.right) traversal(current.right);
+      data.push(current.val);
+    }
+    traversal(current);
+    return data;
+  }
+
+  inOrderDFS() {
+    let data = [],
+      current;
+    current = this.root;
+    function traversal(current) {
+      if (current.left) traversal(current.left);
+      data.push(current.val);
+      if (current.right) traversal(current.right);
     }
     traversal(current);
     return data;
